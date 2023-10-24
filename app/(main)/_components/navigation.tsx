@@ -1,16 +1,19 @@
 'use client';
 
+import { useQuery } from 'convex/react';
 import { ChevronsLeft, MenuIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { ElementRef, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 
+import { api } from '@/convex/_generated/api';
 import { cn } from '@/lib/utils';
 import UserItem from './user-item';
 
 export default function Navigation() {
 	const pathName = usePathname();
 	const isMobile = useMediaQuery('(max-width: 768px)');
+	const documents = useQuery(api.documents.get);
 	const isResizingRef = useRef(false);
 	const sidebarRef = useRef<ElementRef<'aside'>>(null);
 	const navbarRef = useRef<ElementRef<'div'>>(null);
@@ -119,7 +122,9 @@ export default function Navigation() {
 					<UserItem />
 				</div>
 				<div className='mt-4'>
-					<p>Documents</p>
+					{documents?.map((document) => (
+						<p>{document.title}</p>
+					))}
 				</div>
 
 				<div
