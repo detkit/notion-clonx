@@ -21,6 +21,7 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover';
 import { api } from '@/convex/_generated/api';
+import { useSearch } from '@/hooks/use-search';
 import { cn } from '@/lib/utils';
 
 import { DocumentList } from './document-list';
@@ -29,6 +30,7 @@ import TrashBox from './trash-box';
 import UserItem from './user-item';
 
 export default function Navigation() {
+	const search = useSearch();
 	const pathName = usePathname();
 	const router = useRouter();
 	const isMobile = useMediaQuery('(max-width: 768px)');
@@ -156,7 +158,7 @@ export default function Navigation() {
 						label='Search'
 						icon={Search}
 						isSearch
-						onClick={() => {}}
+						onClick={search.onOpen}
 					/>
 					<Item label='Setting' icon={Settings} onClick={() => {}} />
 					<Item
