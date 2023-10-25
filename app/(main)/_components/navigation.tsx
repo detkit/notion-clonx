@@ -15,6 +15,7 @@ import { useMediaQuery } from 'usehooks-ts';
 
 import { api } from '@/convex/_generated/api';
 import { cn } from '@/lib/utils';
+import { DocumentList } from './document-list';
 import { Item } from './item';
 import UserItem from './user-item';
 
@@ -157,9 +158,7 @@ export default function Navigation() {
 					/>
 				</div>
 				<div className='mt-4'>
-					{documents?.map((document) => (
-						<p key={document._id}>{document.title}</p>
-					))}
+					<DocumentList />
 				</div>
 
 				<div
