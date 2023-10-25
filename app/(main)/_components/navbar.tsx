@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel';
 
+import Banner from './banner';
 import Title from './title';
 
 interface NavbarProps {
@@ -46,6 +47,8 @@ export default function Navbar({ isCollapsed, onResetSide }: NavbarProps) {
 					<Title initialData={document} />
 				</div>
 			</nav>
+
+			{document.isArchived && <Banner documentId={document._id} />}
 		</>
 	);
 }
